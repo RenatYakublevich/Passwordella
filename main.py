@@ -3,9 +3,10 @@ import random
 import time
 import os
 import sys
+import argparse
 
 
-SYMBOLS = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation
+SYMBOLS = string.ascii_uppercase + string.ascii_lowercase + string.digits
 
 class Passwordella:
 
@@ -51,7 +52,6 @@ class Passwordella:
             time.sleep(2)
             os.system('cls||clear')
 
-
     def generate_random_password(length = 8):
         ''' Function for generation password '''
         final_password = ''
@@ -87,9 +87,14 @@ class Passwordella:
             os.system('cls||clear')
             Passwordella.generate_many_random_password()
 
+#Работа с аргументами командной строки
+parser = argparse.ArgumentParser()
+parser.add_argument("--length")
+args = parser.parse_args()
+length = args.length
+if str(length) in string.digits:
+    print(Passwordella.generate_random_password(int(length)))
+    exit()
 
-
-
-
-
-client = Passwordella.start()
+if __name__ == "__main__":
+    Passwordella.start()
