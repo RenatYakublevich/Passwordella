@@ -6,6 +6,8 @@ import sys
 import argparse
 import hashlib
 
+import pizza_encrypt
+
 
 SYMBOLS = string.ascii_uppercase + string.ascii_lowercase + string.digits
 
@@ -19,7 +21,7 @@ class Passwordella:
         ''' Function for launch program, and for I/O connection with user '''
         Passwordella.design_line()
         print('Hello, it\'s Passwordella(Program for generate passwords)\n')
-        answer_users = input('What do you want to produce\n 1 - Generate random password from random symbols and random length\n 2 - Generate a random password from random characters and a certain length\n 3 - Generate a lot of number of passwords \n 4 - Generate password with MD5 \n 5 - Generate a password with specific encryption \n - - - - - - - - - - - - - - - - - - - -\n 6 - All encrypt on you PC ')
+        answer_users = input('What do you want to produce\n 1 - Generate random password from random symbols and random length\n 2 - Generate a random password from random characters and a certain length\n 3 - Generate a lot of number of passwords \n 4 - Generate password with MD5 \n 5 - Generate a password with specific encryption \n 6 - Use our encryption - Pizza Encrypt\n - - - - - - - - - - - - - - - - - - - -\n 7 - All encrypt on you PC ')
         Passwordella.design_line()
 
         try:
@@ -40,7 +42,22 @@ class Passwordella:
                 Passwordella.generate_password_with_encrypt(specific_encrypt)
 
             elif answer_users == '6':
+                question = input(' 1 - Code \n 2 - Decode ')
+                string = input('Write your string for Code ')
+                if question == '1':
+                    print(pizza_encrypt.pizza_encrypt(list(string)))
+                elif question == '2':
+                    print(pizza_encrypt.pizza_decrypt(list(string)))
+                else:
+                    print('Write only num!')
+                    time.sleep(1.2)
+                    Passwordella.start()
+                    return
+
+            elif answer_users == '7':
                 Passwordella.all_encrypt()
+
+
 
             elif answer_users == 'cls' or answer_users == 'clear()' or answer_users == 'clear':
                 sys.exit()
@@ -98,6 +115,7 @@ class Passwordella:
             Passwordella.generate_many_random_password()
 
     def generate_password_with_encrypt(encrypt='md5'):
+        ''' Function for generate pasword with encrypion '''
         try:
             source_string = input('Enter a keyword for encryption(for example, the site where you want to register) ')
             length = input('Write length for you password(write pass to save the required password length)')
@@ -112,9 +130,8 @@ class Passwordella:
         except ValueError:
             print('There is no such encryption!')
 
-
     def all_encrypt():
-
+        ''' Function for return all encryption on PC '''
         for el in hashlib.algorithms_available:
             print(el)
 
