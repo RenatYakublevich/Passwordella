@@ -4,6 +4,7 @@ import time
 import os
 import sys
 import argparse
+import hashlib
 
 
 SYMBOLS = string.ascii_uppercase + string.ascii_lowercase + string.digits
@@ -18,7 +19,7 @@ class Passwordella:
         ''' Function for launch program, and for I/O connection with user '''
         Passwordella.design_line()
         print('Hello, it\'s Passwordella(Program for generate passwords)\n')
-        answer_users = input('What do you want to produce\n 1 - Generate random password from random symbols and random length\n 2 - Generate a random password from random characters and a certain length\n 3 - Generate a lot of number of passwords ')
+        answer_users = input('What do you want to produce\n 1 - Generate random password from random symbols and random length\n 2 - Generate a random password from random characters and a certain length\n 3 - Generate a lot of number of passwords \n 4 - Generate password with MD5 \n 5 - Generate a password with specific encryption \n - - - - - - - - - - - - - - - - - - - -\n 6 - All encrypt on you PC ')
         Passwordella.design_line()
 
         try:
@@ -31,6 +32,15 @@ class Passwordella:
 
             elif answer_users == '3':
                 Passwordella.generate_many_random_password()
+            elif answer_users == '4':
+                Passwordella.generate_password_with_encrypt()
+
+            elif answer_users == '5':
+                specific_encrypt = input('Write name of encryption ')
+                Passwordella.generate_password_with_encrypt(specific_encrypt)
+
+            elif answer_users == '6':
+                Passwordella.all_encrypt()
 
             elif answer_users == 'cls' or answer_users == 'clear()' or answer_users == 'clear':
                 sys.exit()
@@ -87,12 +97,33 @@ class Passwordella:
             os.system('cls||clear')
             Passwordella.generate_many_random_password()
 
+    def generate_password_with_encrypt(encrypt='md5'):
+        try:
+            source_string = input('Enter a keyword for encryption(for example, the site where you want to register) ')
+            length = input('Write length for you password(write pass to save the required password length)')
+
+            hash_object = hashlib.new(encrypt)
+            hash_object.update(b'{source_string}')
+
+            if length == 'pass':
+                print(hash_object.hexdigest())
+                return
+            print(hash_object.hexdigest()[0:int(length)])
+        except ValueError:
+            print('There is no such encryption!')
+
+
+    def all_encrypt():
+
+        for el in hashlib.algorithms_available:
+            print(el)
+
 #Работа с аргументами командной строки
 parser = argparse.ArgumentParser()
 parser.add_argument("--length")
 args = parser.parse_args()
 length = args.length
-if str(length) in string.digits:
+if length:
     print(Passwordella.generate_random_password(int(length)))
     exit()
 
