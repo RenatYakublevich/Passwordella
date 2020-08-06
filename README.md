@@ -8,7 +8,7 @@
  - сохранения их в txt файл
  
 
-![d](https://sun9-46.userapi.com/_YpKwU7MBSUBcBRSEiA7qWUZA-_DUnjV6gDWKA/J5EhynbJUck.jpg)
+![d](https://sun9-28.userapi.com/QTxlgliQEMsSBz6-khmrD9CYakoI4IzccKJlGg/4LE3TTTLOXc.jpg)
 # Аргументы командной строки
 Имеется возможность генерировать пароли с помощью аргументов командной строки
 Для этого в аргумент нужно передать длину пароля - `py main.py --length 5`
