@@ -19,8 +19,15 @@ class Passwordella:
 
     def start():
         ''' Function for launch program, and for I/O connection with user '''
-        Passwordella.design_line()
-        print('Hello, it\'s Passwordella(Program for generate passwords)\n')
+        print('''
+╔═╗────╔═╗╔═╗───────────╔╗─────────────
+║╬║╔═╗─║═╣║═╣╔╦╦╗╔═╗╔╦╗╔╝║╔═╗╔╗─╔╗─╔═╗─
+║╔╝║╬╚╗╠═║╠═║║║║║║╬║║╔╝║╬║║╩╣║╚╗║╚╗║╬╚╗
+╚╝─╚══╝╚═╝╚═╝╚══╝╚═╝╚╝─╚═╝╚═╝╚═╝╚═╝╚══╝
+Hello, it\'s Passwordella(Program for generate passwords)\n
+https://github.com/RenatYakublevich/Passwordella
+version 1.3 - created by Renat Yakublevich
+        ''')
         answer_users = input('What do you want to produce\n 1 - Generate random password from random symbols and random length\n 2 - Generate a random password from random characters and a certain length\n 3 - Generate a lot of number of passwords \n 4 - Generate password with MD5 \n 5 - Generate a password with specific encryption \n 6 - Use our encryption - Pizza Encrypt\n - - - - - - - - - - - - - - - - - - - -\n 7 - All encrypt on you PC ')
         Passwordella.design_line()
 

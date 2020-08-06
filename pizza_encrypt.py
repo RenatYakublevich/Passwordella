@@ -1,5 +1,8 @@
 import random
 import string
+import os
+import sys
+from functools import wraps
 
 
 SYMBOLS = string.ascii_uppercase + string.ascii_lowercase + string.digits
@@ -8,7 +11,7 @@ def pizza_encrypt(string):
     after_encrypt = string
     after_ecrypt_string = ''
     for el in range(1,len(string)):
-        after_encrypt[el - 1],after_encrypt[el] = after_encrypt[el],after_encrypt[el - 1]
+        after_encrypt[el],after_encrypt[el - 1] = after_encrypt[el - 1],after_encrypt[el]
 
     for el in after_encrypt:
         after_ecrypt_string += el + random.choice(SYMBOLS)
