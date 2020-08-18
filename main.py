@@ -7,6 +7,7 @@ import argparse
 import hashlib
 
 import pizza_encrypt
+import cryptography
 
 
 SYMBOLS = string.ascii_uppercase + string.ascii_lowercase + string.digits
@@ -28,27 +29,27 @@ Hello, it\'s Passwordella(Program for generate passwords)\n
 https://github.com/RenatYakublevich/Passwordella
 version 1.3 - created by Renat Yakublevich
         ''')
-        answer_users = input('What do you want to produce\n 1 - Generate random password from random symbols and random length\n 2 - Generate a random password from random characters and a certain length\n 3 - Generate a lot of number of passwords \n 4 - Generate password with MD5 \n 5 - Generate a password with specific encryption \n 6 - Use our encryption - Pizza Encrypt\n - - - - - - - - - - - - - - - - - - - -\n 7 - All encrypt on you PC ')
+        answer_users = input('What do you want to produce\n 1 - Generate random password from random symbols and random length\n 2 - Generate a random password from random characters and a certain length\n 3 - Generate a lot of number of passwords \n 4 - Generate password with MD5 \n 5 - Generate a password with specific encryption \n 6 - Use our encryption - Pizza Encrypt\n - - - - - - - - - - - - - - - - - - - -\n 7 - All encrypt on you PC\n 8 - Caesar Cipher ')
         Passwordella.design_line()
 
         try:
-            if answer_users == '1':
+            if answer_users.find('1') != -1:
                 print(Passwordella.generate_random_password())
 
-            elif answer_users == '2':
+            elif answer_users.find('2') != -1:
                 length = int(input('Write length for password '))
                 print(Passwordella.generate_random_password(length))
 
-            elif answer_users == '3':
+            elif answer_users.find('3') != -1:
                 Passwordella.generate_many_random_password()
-            elif answer_users == '4':
+            elif answer_users.find('4') != -1:
                 Passwordella.generate_password_with_encrypt()
 
-            elif answer_users == '5':
+            elif answer_users.find('5') != -1:
                 specific_encrypt = input('Write name of encryption ')
                 Passwordella.generate_password_with_encrypt(specific_encrypt)
 
-            elif answer_users == '6':
+            elif answer_users.find('6') != -1:
                 question = input(' 1 - Code \n 2 - Decode ')
                 string = input('Write your string for Code ')
                 if question == '1':
@@ -61,8 +62,17 @@ version 1.3 - created by Renat Yakublevich
                     Passwordella.start()
                     return
 
-            elif answer_users == '7':
+            elif answer_users.find('7') != -1:
                 Passwordella.all_encrypt()
+
+            elif answer_users.find('8') != -1:
+                input_string = input('Enter the original string ')
+                input_rot = input('Enter ther ROT ')
+
+                print(cryptography.encode_caesar(input_string,int(input_rot)))
+
+
+
 
 
 
